@@ -5,6 +5,7 @@ import PulsingCircle from "@/components/PulsingCircle"
 import Header from "@/components/Header"
 import LeadModal from "@/components/LeadModal"
 import Portfolio from "@/components/Portfolio"
+import Services from "@/components/Services"
 
 const Index = () => {
   const [modalOpen, setModalOpen] = useState(false)
@@ -17,6 +18,7 @@ const Index = () => {
         <PulsingCircle />
       </ShaderBackground>
       <Portfolio />
+      <Services />
       <LeadModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
     </>
   )
