@@ -14,10 +14,10 @@ export default function Footer() {
             <p className="text-white/40 text-xs uppercase tracking-widest mb-4">Контакты</p>
             <div className="flex flex-col gap-2">
               <a
-                href="tel:+79991234567"
+                href="tel:+79770765679"
                 className="text-white/70 text-sm hover:text-white transition-colors"
               >
-                +7 (999) 123-45-67
+                +7 (977) 076-56-79
               </a>
               <a
                 href="mailto:pinkmilk002@gmail.com"
