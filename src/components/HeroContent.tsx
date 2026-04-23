@@ -1,8 +1,4 @@
-interface HeroContentProps {
-  onOpenModal: () => void
-}
-
-export default function HeroContent({ onOpenModal }: HeroContentProps) {
+export default function HeroContent() {
   return (
     <main className="absolute bottom-8 left-8 z-20 max-w-lg">
       <div className="text-left">
@@ -31,12 +27,20 @@ export default function HeroContent({ onOpenModal }: HeroContentProps) {
 
         {/* Buttons */}
         <div className="flex items-center gap-4 flex-wrap">
-          <button
-            onClick={onOpenModal}
+          <a
+            href="tel:+79770765679"
             className="px-8 py-3 rounded-full bg-white text-black font-normal text-xs transition-all duration-200 hover:bg-white/90 cursor-pointer"
           >
-            Обсудить проект
-          </button>
+            +7 (977) 076-56-79
+          </a>
+          <a
+            href="https://vk.com/conceptstudi"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-8 py-3 rounded-full bg-transparent border border-white/30 text-white font-normal text-xs transition-all duration-200 hover:bg-white/10 hover:border-white/50 cursor-pointer"
+          >
+            ВКонтакте
+          </a>
         </div>
       </div>
     </main>
