@@ -62,23 +62,24 @@ def handler(event: dict, context) -> dict:
         f"💬 Сообщение: {message if message else '—'}"
     )
 
-    post_params = urllib.parse.urlencode({
-        'owner_id': f'-{group_id}',
+    # peer_id для сообщений сообщества = 2000000000 + group_id
+    send_params = urllib.parse.urlencode({
+        'peer_id': 2000000000 + group_id,
         'message': text,
-        'from_group': 1,
+        'random_id': 0,
         'access_token': token,
         'v': '5.199'
     })
 
     req = urllib.request.Request(
-        f'https://api.vk.com/method/wall.post?{post_params}',
+        f'https://api.vk.com/method/messages.send?{send_params}',
         method='POST'
     )
     with urllib.request.urlopen(req) as resp:
         result = json.loads(resp.read().decode())
 
     if 'error' in result:
-        print(f"VK wall.post error: {result}")
+        print(f"VK messages.send error: {result}")
         return {
             'statusCode': 500,
             'headers': {'Access-Control-Allow-Origin': '*'},
