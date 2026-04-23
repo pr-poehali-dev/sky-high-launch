@@ -32,6 +32,29 @@ def handler(event: dict, context) -> dict:
 
     token = os.environ['VK_API_TOKEN']
 
+    # Получаем ID сообщества по screen_name
+    resolve_params = urllib.parse.urlencode({
+        'screen_name': 'conceptstudi',
+        'access_token': token,
+        'v': '5.199'
+    })
+    req = urllib.request.Request(
+        f'https://api.vk.com/method/utils.resolveScreenName?{resolve_params}',
+        method='GET'
+    )
+    with urllib.request.urlopen(req) as resp:
+        resolve_result = json.loads(resp.read().decode())
+
+    if 'error' in resolve_result or not resolve_result.get('response'):
+        print(f"VK resolveScreenName error: {resolve_result}")
+        return {
+            'statusCode': 500,
+            'headers': {'Access-Control-Allow-Origin': '*'},
+            'body': json.dumps({'error': 'Не удалось определить сообщество ВК'})
+        }
+
+    group_id = resolve_result['response']['object_id']
+
     text = (
         f"📋 Новая заявка с сайта!\n\n"
         f"👤 Имя: {name}\n"
@@ -39,23 +62,23 @@ def handler(event: dict, context) -> dict:
         f"💬 Сообщение: {message if message else '—'}"
     )
 
-    params = urllib.parse.urlencode({
-        'user_id': 0,
-        'random_id': 0,
-        'peer_id': -226924063,
+    post_params = urllib.parse.urlencode({
+        'owner_id': f'-{group_id}',
         'message': text,
+        'from_group': 1,
         'access_token': token,
         'v': '5.199'
     })
 
     req = urllib.request.Request(
-        f'https://api.vk.com/method/messages.send?{params}',
+        f'https://api.vk.com/method/wall.post?{post_params}',
         method='POST'
     )
     with urllib.request.urlopen(req) as resp:
         result = json.loads(resp.read().decode())
 
     if 'error' in result:
+        print(f"VK wall.post error: {result}")
         return {
             'statusCode': 500,
             'headers': {'Access-Control-Allow-Origin': '*'},
