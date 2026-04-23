@@ -1,3 +1,5 @@
+import { MeshGradient } from "@paper-design/shaders-react"
+
 const services = [
   {
     title: 'Консультация и замеры',
@@ -33,8 +35,18 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="services" className="bg-black py-24 px-8">
-      <div className="max-w-6xl mx-auto">
+    <section id="services" className="relative py-24 px-8 overflow-hidden">
+      <MeshGradient
+        className="absolute inset-0 w-full h-full"
+        colors={["#000000", "#8b5cf6", "#ffffff", "#1e1b4b", "#4c1d95"]}
+        speed={0.3}
+      />
+      <MeshGradient
+        className="absolute inset-0 w-full h-full opacity-60"
+        colors={["#000000", "#ffffff", "#8b5cf6", "#000000"]}
+        speed={0.2}
+      />
+      <div className="relative z-10 max-w-6xl mx-auto">
         <div className="mb-12">
           <p className="text-white/40 text-xs uppercase tracking-widest mb-3">Услуги</p>
           <h2 className="text-white text-4xl font-light">
@@ -46,7 +58,7 @@ export default function Services() {
           {services.map((service) => (
             <div
               key={service.title}
-              className="bg-black p-8 hover:bg-neutral-950 transition-colors duration-300 group"
+              className="bg-black/40 backdrop-blur-sm p-8 hover:bg-black/60 transition-colors duration-300 group"
             >
               <div className="flex flex-col h-full">
                 <h3 className="text-white text-lg font-light mb-3 group-hover:text-white/90 transition-colors">

@@ -1,3 +1,5 @@
+import { MeshGradient } from "@paper-design/shaders-react"
+
 const projects = [
   {
     id: 1,
@@ -21,8 +23,18 @@ const projects = [
 
 export default function Portfolio() {
   return (
-    <section id="portfolio" className="bg-neutral-950 py-24 px-8">
-      <div className="max-w-6xl mx-auto">
+    <section id="portfolio" className="relative py-24 px-8 overflow-hidden">
+      <MeshGradient
+        className="absolute inset-0 w-full h-full"
+        colors={["#000000", "#8b5cf6", "#ffffff", "#1e1b4b", "#4c1d95"]}
+        speed={0.3}
+      />
+      <MeshGradient
+        className="absolute inset-0 w-full h-full opacity-60"
+        colors={["#000000", "#ffffff", "#8b5cf6", "#000000"]}
+        speed={0.2}
+      />
+      <div className="relative z-10 max-w-6xl mx-auto">
         <div className="mb-12">
           <p className="text-white/40 text-xs uppercase tracking-widest mb-3">Наши работы</p>
           <h2 className="text-white text-4xl font-light">
@@ -48,5 +60,6 @@ export default function Portfolio() {
         </div>
       </div>
     </section>
+
   )
 }
