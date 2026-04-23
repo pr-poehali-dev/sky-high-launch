@@ -46,7 +46,7 @@ export default function Footer() {
 
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-white/20 text-xs">© 2024 Студия «Концепция». Все права защищены.</p>
-          <p className="text-white/20 text-xs">Москва</p>
+          <p className="text-white/20 text-xs">Тюмень</p>
         </div>
       </div>
     </footer>
