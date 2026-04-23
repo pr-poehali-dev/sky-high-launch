@@ -62,9 +62,9 @@ def handler(event: dict, context) -> dict:
         f"💬 Сообщение: {message if message else '—'}"
     )
 
-    # peer_id для сообщений сообщества = 2000000000 + group_id
+    # peer_id для беседы сообщества = отрицательный group_id
     send_params = urllib.parse.urlencode({
-        'peer_id': 2000000000 + group_id,
+        'peer_id': -group_id,
         'message': text,
         'random_id': 0,
         'access_token': token,
