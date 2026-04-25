@@ -21,7 +21,7 @@ const projects = [
 
 export default function Portfolio() {
   return (
-    <section id="portfolio" className="relative py-24 px-8 overflow-hidden bg-neutral-900">
+    <section id="portfolio" className="relative py-24 px-8 overflow-hidden bg-neutral-950">
       <div className="max-w-6xl mx-auto">
         <div className="mb-12">
           <p className="text-white/40 text-xs uppercase tracking-widest mb-3">Наши работы</p>
